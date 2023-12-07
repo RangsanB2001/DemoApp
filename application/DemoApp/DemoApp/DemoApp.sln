@@ -7,11 +7,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{E1A05C
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sources", "Sources", "{BFD8852F-483E-4091-800E-B5F3F1C531B3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthenticationModels", "AuthenticationModels\AuthenticationModels.csproj", "{512D93F0-6D8E-4EF7-BD77-13BDEF86EDB3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthenticationModels", "AuthenticationModels\AuthenticationModels.csproj", "{512D93F0-6D8E-4EF7-BD77-13BDEF86EDB3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthenticationAPI", "AuthenticationAPI\AuthenticationAPI.csproj", "{FFAC5276-7022-4836-B470-BFD4F072AB1D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthenticationAPI", "AuthenticationAPI\AuthenticationAPI.csproj", "{FFAC5276-7022-4836-B470-BFD4F072AB1D}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{F1B44584-D3B6-4A03-BD5B-A2EB2632E762}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NewFolder1", "NewFolder1", "{6CD27E60-2EEC-4F7D-8208-99C3545F2712}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoWebMVC", "DemoWebMVC\DemoWebMVC.csproj", "{374D23C4-B6FF-4FA5-954F-F9C136F8B760}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,6 +35,10 @@ Global
 		{F1B44584-D3B6-4A03-BD5B-A2EB2632E762}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1B44584-D3B6-4A03-BD5B-A2EB2632E762}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F1B44584-D3B6-4A03-BD5B-A2EB2632E762}.Release|Any CPU.Build.0 = Release|Any CPU
+		{374D23C4-B6FF-4FA5-954F-F9C136F8B760}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{374D23C4-B6FF-4FA5-954F-F9C136F8B760}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{374D23C4-B6FF-4FA5-954F-F9C136F8B760}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{374D23C4-B6FF-4FA5-954F-F9C136F8B760}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -38,6 +46,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{512D93F0-6D8E-4EF7-BD77-13BDEF86EDB3} = {E1A05C12-F41E-4AAE-B6A6-59B85EA22297}
 		{FFAC5276-7022-4836-B470-BFD4F072AB1D} = {BFD8852F-483E-4091-800E-B5F3F1C531B3}
+		{6CD27E60-2EEC-4F7D-8208-99C3545F2712} = {BFD8852F-483E-4091-800E-B5F3F1C531B3}
+		{374D23C4-B6FF-4FA5-954F-F9C136F8B760} = {BFD8852F-483E-4091-800E-B5F3F1C531B3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {01901871-2C3A-4E62-89B0-F83B2CCF51D2}

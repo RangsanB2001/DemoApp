@@ -1,0 +1,1 @@
+dotnet ef dbcontext scaffold "Server=localhost;User=root;Password=rangsan2001;Database=rangsan" --context RangsanContext Pomelo.EntityFrameworkCore.MySql --output-dir Models --data-annotations --use-database-names --force --no-onconfiguring

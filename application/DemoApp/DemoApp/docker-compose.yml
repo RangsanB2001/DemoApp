@@ -1,8 +1,21 @@
 version: '3.4'
 
+networks:
+  default:
+    name: demoapp
+    external: true
+
 services:
   authenticationapi:
     image: ${DOCKER_REGISTRY-}authenticationapi
     build:
       context: .
       dockerfile: AuthenticationAPI/Dockerfile
+    networks:
+        - default
+  demowebmvc:
+    image: ${DOCKER_REGISTRY-}demowebmvc
+    build:
+      context: .
+      dockerfile: DemoWebMVC/Dockerfile
+

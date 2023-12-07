@@ -1,4 +1,7 @@
 
+using AuthenticationAPI.Models;
+using Microsoft.EntityFrameworkCore;
+
 namespace AuthenticationAPI
 {
     public class Program
@@ -13,6 +16,14 @@ namespace AuthenticationAPI
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddDbContext<RangsanContext>(opt =>
+            {
+                var connectionString = builder.Configuration.GetConnectionString("Default");
+                var dbVersion = ServerVersion.AutoDetect(connectionString);
+
+                opt.UseMySql(connectionString, dbVersion);
+            });
 
             var app = builder.Build();
 
