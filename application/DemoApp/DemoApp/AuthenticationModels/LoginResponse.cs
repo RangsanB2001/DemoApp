@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace AuthenticationModels
+﻿namespace AuthenticationModels
 {
     public class LoginResponse
     {

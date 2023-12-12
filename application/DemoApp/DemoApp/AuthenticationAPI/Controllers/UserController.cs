@@ -2,7 +2,6 @@
 using AuthenticationModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Threading;
 
 namespace AuthenticationAPI.Controllers
 {
@@ -16,7 +15,7 @@ namespace AuthenticationAPI.Controllers
         {
             _dbContext = dbContext;
         }
-
+        // สมัครสมาชิก
         [HttpPost("Register")]
         public async Task<IActionResult> Register([FromBody] AddUserRequest request, CancellationToken cancellationToken = default)
         {
@@ -31,7 +30,7 @@ namespace AuthenticationAPI.Controllers
 
             return Ok(user);
         }
-
+        // ล็อกอิน
         [HttpPost("Login")]
         public async Task<IActionResult> Login([FromBody] LoginRequest request, CancellationToken cancellationToken = default)
         {
@@ -53,7 +52,7 @@ namespace AuthenticationAPI.Controllers
 
             return Ok(returnData);
         }
-
+        // อัปเดต
         [HttpPatch("UpdateUser")]
         public async Task<IActionResult> UpdateUser([FromBody] Models.user request, CancellationToken cancellationToken = default)
         {
@@ -62,7 +61,7 @@ namespace AuthenticationAPI.Controllers
 
             return Ok(request);
         }
-
+        //ลบ
         [HttpDelete("DeleteUser")]
         public async Task<IActionResult> DeleteUser([FromBody] Models.user request, CancellationToken cancellationToken = default)
         {

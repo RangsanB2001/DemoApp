@@ -1,3 +1,5 @@
+using Middlewares;
+
 namespace DemoWebMVC
 {
     public class Program
@@ -19,6 +21,8 @@ namespace DemoWebMVC
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseForwardedPrefixMiddleware();
 
             app.UseAuthorization();
 

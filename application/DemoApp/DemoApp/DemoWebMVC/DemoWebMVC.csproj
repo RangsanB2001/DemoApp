@@ -12,4 +12,9 @@
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.5" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\AuthenticationModels\AuthenticationModels.csproj" />
+    <ProjectReference Include="..\Middlewares\Middlewares.csproj" />
+  </ItemGroup>
+
 </Project>

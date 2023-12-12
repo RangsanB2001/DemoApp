@@ -1,4 +1,4 @@
-
+using Middlewares;
 using AuthenticationAPI.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -33,6 +33,8 @@ namespace AuthenticationAPI
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+
+            app.UseForwardedPrefixMiddleware();
 
             app.UseAuthorization();
 
