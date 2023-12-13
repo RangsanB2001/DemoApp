@@ -2,6 +2,7 @@
 using AuthenticationModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace AuthenticationAPI.Controllers
 {
@@ -19,7 +20,7 @@ namespace AuthenticationAPI.Controllers
         [HttpPost("Register")]
         public async Task<IActionResult> Register([FromBody] AddUserRequest request, CancellationToken cancellationToken = default)
         {
-            var user = new Models.user
+            var user = new Models.User
             {
                 username = request.UserName,
                 password = request.Password,
@@ -54,16 +55,15 @@ namespace AuthenticationAPI.Controllers
         }
         // อัปเดต
         [HttpPatch("UpdateUser")]
-        public async Task<IActionResult> UpdateUser([FromBody] Models.user request, CancellationToken cancellationToken = default)
+        public async Task<IActionResult> UpdateUser([FromBody] Models.User request, CancellationToken cancellationToken = default)
         {
             _dbContext.Update(request);
             await _dbContext.SaveChangesAsync(cancellationToken);
-
             return Ok(request);
         }
         //ลบ
         [HttpDelete("DeleteUser")]
-        public async Task<IActionResult> DeleteUser([FromBody] Models.user request, CancellationToken cancellationToken = default)
+        public async Task<IActionResult> DeleteUser([FromBody] Models.User request, CancellationToken cancellationToken = default)
         {
             _dbContext.Remove(request);
             await _dbContext.SaveChangesAsync(cancellationToken);
@@ -72,5 +72,25 @@ namespace AuthenticationAPI.Controllers
 
             return Ok(user);
         }
+
+        [HttpGet("Profile")]
+        public async Task<IActionResult> GetUserProfile(int iduser, CancellationToken cancellationToken = default)
+        {
+            var userData = await _dbContext.users
+                 .AsSplitQuery()
+                 .AsNoTracking()
+                 .FirstOrDefaultAsync(x => x.iduser == iduser, cancellationToken);
+
+            if (userData != null)
+            {
+                var returnData = new GetDataUser();
+                returnData.userId = userData.iduser;
+                returnData.userName = userData.username;
+                returnData.password = userData.password;
+                return Ok(returnData);
+            }
+            return NotFound();
+        }
+
     }
 }

@@ -1,6 +1,6 @@
-using Middlewares;
 using AuthenticationAPI.Models;
 using Microsoft.EntityFrameworkCore;
+using Middlewares;
 
 namespace AuthenticationAPI
 {

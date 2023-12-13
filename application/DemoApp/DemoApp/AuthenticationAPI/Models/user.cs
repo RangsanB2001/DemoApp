@@ -6,7 +6,7 @@ namespace AuthenticationAPI.Models;
 
 [Table("user")]
 [MySqlCollation("utf8mb4_0900_ai_ci")]
-public partial class user
+public partial class User
 {
     [Key]
     public int iduser { get; set; }

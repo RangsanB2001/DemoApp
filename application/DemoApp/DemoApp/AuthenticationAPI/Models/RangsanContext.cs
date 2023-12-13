@@ -9,7 +9,7 @@ public partial class RangsanContext : DbContext
     {
     }
 
-    public virtual DbSet<user> users { get; set; }
+    public virtual DbSet<User> users { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -17,7 +17,7 @@ public partial class RangsanContext : DbContext
             .UseCollation("utf8mb4_general_ci")
             .HasCharSet("utf8mb4");
 
-        modelBuilder.Entity<user>(entity =>
+        modelBuilder.Entity<User>(entity =>
         {
             entity.HasKey(e => e.iduser).HasName("PRIMARY");
         });

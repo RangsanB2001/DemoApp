@@ -1,4 +1,6 @@
+using Helpers.CallHttpClientHelper;
 using Middlewares;
+using Settings;
 
 namespace DemoWebMVC
 {
@@ -9,9 +11,22 @@ namespace DemoWebMVC
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            builder.Services.AddSession(option =>
+            {
+                option.IdleTimeout = TimeSpan.FromMinutes(5);
+                option.Cookie.HttpOnly = true;
+                option.Cookie.IsEssential = true;
+            });
+
             builder.Services.AddControllersWithViews();
 
+            builder.Services.AddHttpContextAccessor();
+            builder.Services.AddICallHttpClientHelper();
+
+            builder.Services.Configure<ServiceSettings>(builder.Configuration.GetSection(nameof(ServiceSettings)));
+
             var app = builder.Build();
+
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
@@ -23,6 +38,8 @@ namespace DemoWebMVC
             app.UseRouting();
 
             app.UseForwardedPrefixMiddleware();
+
+            app.UseSession();
 
             app.UseAuthorization();
 

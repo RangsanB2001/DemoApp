@@ -13,6 +13,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Helpers\Helpers.csproj" />
+    <ProjectReference Include="..\Settings\Settings.csproj" />
     <ProjectReference Include="..\AuthenticationModels\AuthenticationModels.csproj" />
     <ProjectReference Include="..\Middlewares\Middlewares.csproj" />
   </ItemGroup>
