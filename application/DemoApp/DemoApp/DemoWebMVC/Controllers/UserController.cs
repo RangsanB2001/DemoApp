@@ -44,6 +44,12 @@ namespace DemoWebMVC.Controllers
             }
         }
 
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Index", "Home");
+        }
+
         public IActionResult Register()
         {
             return View();
@@ -58,23 +64,23 @@ namespace DemoWebMVC.Controllers
 
             if (result.success)
             {
-
-                return View();
+                return RedirectToAction("Login", "User");
             }
             else
             {
-                return Unauthorized();
+                return RedirectToAction("Register", "User");
             }
 
         }
 
-        public async Task<IActionResult> ProfileAsync()
+        public async Task<IActionResult> Profile()
         {
             var userId = HttpContext.Session.GetInt32("user_id");
 
             if (userId != null)
             {
                 var fullUrl = $"{serviceSettings.AuthenticationApi}/User/Profile/?iduser={userId.Value}";
+
                 var result = await httpClientHelper.SendJson(fullUrl, HttpMethod.Get, string.Empty);
 
                 if (result.success)
@@ -101,12 +107,55 @@ namespace DemoWebMVC.Controllers
             if (result.success)
             {
                 var userModel = JsonSerializer.Deserialize<GetDataUser>(result.body);
-                return View("Profile", userModel);
+
+                if (userModel != null)
+                {
+                    HttpContext.Session.SetInt32("user_id", userModel.iduser);
+                    return RedirectToAction("Profile", "User");
+                }
             }
-            else
+
+            HttpContext.Session.SetInt32("user_id", Update.iduser);
+            return RedirectToAction("Profile", "User");
+        }
+
+
+        public async Task<IActionResult> Data()
+        {
+            var userId = HttpContext.Session.GetInt32("user_id");
+
+            if (userId != null)
             {
-                return BadRequest();
+                var fullUrl = $"{serviceSettings.AuthenticationApi}/User/GetData/?iduser={userId.Value}";
+                var result = await httpClientHelper.SendJson(fullUrl, HttpMethod.Get, string.Empty);
+
+                if (result.success)
+                {
+                    var data = JsonSerializer.Deserialize<IEnumerable<GetDataUser>>(result.body);
+
+                    if (data != null)
+                    {
+                        return View(data);
+                    }
+                }
             }
+            return RedirectToAction("Login", "User");
+        }
+
+        public async Task<IActionResult> Delete(int? id)
+        {
+
+            if (id.HasValue)
+            {
+                var fullUrl = $"{serviceSettings.AuthenticationApi}/User/DeleteUser/?iduser={id.Value}";
+                var result = await httpClientHelper.SendJson(fullUrl, HttpMethod.Delete, string.Empty);
+
+                if (result.success)
+                {
+                    return RedirectToAction("Data", "User");
+                }
+            }
+            return RedirectToAction("Data", "User");
         }
     }
 }

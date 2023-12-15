@@ -39,6 +39,7 @@ namespace Helpers.CallHttpClientHelper
                 }
             }
 
+
             httpRequest.Headers.Add("Accept", "application/json");
 
             if (!string.IsNullOrWhiteSpace(content))
